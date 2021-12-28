@@ -1,0 +1,262 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@font-face {
+    font-family: 'saintmaria';
+    src:url('fonts/SaintMonica.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* MAIN PAGE */
+body {
+    overflow: hidden;
+}
+
+h2 {
+    font-family: 'saintmaria', Arial, Helvetica, sans-serif;
+    font-size: 100px;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.content {
+    overflow: hidden;
+    text-align: center;
+}
+
+.content ul li {
+    display: inline-block;
+    background-color: rgba(26, 55, 77, 1);
+    border-radius: 6px;
+    width: 180px;
+    height: 180px;
+    margin-right: 60px;
+    box-shadow: 5px 5px 3px rgb(0,0,0,0.6);
+}
+
+
+.content ul li a {
+    text-decoration: none;
+}
+
+.content ul li img {
+    width: 180px;
+    height: 180px;
+    box-sizing: border-box;
+}
+
+.content ul li span {
+    margin: auto;
+    padding: 5px;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    width: 5rem;
+    position: relative;
+    bottom: 1rem;
+    display: block;
+    background-color: rgba(64, 104, 130, 1);
+    color: white;
+}
+
+.circle {
+    width: 700px;
+    height: 700px;
+    position:absolute;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.one {
+    background-color: rgba(177, 208, 224, 1);
+    top: -350px;
+    right: -350px;
+}
+
+.two {
+    background-color: rgba(105, 152, 171, 1);
+    bottom: -350px;
+    left: -350px;
+}
+
+
+/* KUBUS PAGE */
+
+/* NAVBAR */
+h1 {
+    font-family: 'saintmaria', Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-left: 3rem;
+}
+
+nav {
+    background: rgba(177, 208, 224, 1);
+    padding: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 3rem;
+}
+
+nav ul li {
+    margin: auto 0;
+    padding: 7px 15px;
+    transition: 0.3s;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+}
+
+nav ul li:not(:first-child):hover {
+    background: rgba(105, 152, 171, 1);
+}
+
+/* CONTENT */
+.content-page {
+    margin: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50vh;
+}
+
+
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cube {
+    width: 60vh;
+    height: 60vh;
+    margin: 1.5rem;
+    position: relative;
+}
+
+
+.result {
+    width: 61vh;
+    background: rgba(64, 104, 130, 1);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 30px;
+
+}
+
+.right {
+    justify-content: space-between;
+    gap: 12rem;
+    text-align: center;
+}
+
+.formula span {
+    background: rgba(105, 152, 171, 1);
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.formula p {
+    background: rgba(177, 208, 224, 1);
+    font-size: 50px;
+    padding: 25px 25px 25px 25px;
+    border-radius: 5px;
+    margin-top: -10px;
+}
+
+.input-container {
+    background: rgba(64, 104, 130, 1);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.sisi, .panjang, .lebar, .tinggi, .radius {
+    background: rgba(105, 152, 171, 1);
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+
+}
+
+.sisi::placeholder, .panjang::placeholder, .lebar::placeholder, .tinggi::placeholder, .radius::placeholder {
+    color: rgba(248, 241, 241, 0.6);
+    font-size: 15px;
+}
+
+.input .submit {
+    display: block;
+    background: rgba(26, 55, 77, 1);
+    color: white;
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruangku</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html"><h1>RUANGKU</h1></a></li>
+            <li><a href="kubus.html">kubus</a></li>
+            <li style="background: rgba(105, 152, 171, 1);"><a href="balok.html">balok</a></li>
+            <li><a href="tabung.html">tabung</a></li>
+            <li><a href="kerucut.html">kerucut</a></li>
+        </ul>
+    </nav>
+    <div class="content-page">
+        <div class="left">
+            <div class="cube"></div>
+            <div class="result">Volume Balok : </div>
+        </div>
+        <div class="right">
+            <div class="formula">
+                <span>volume balok</span>
+                <p>p &#215; l &#215; t</p>
+            </div>
+            <div class="input">
+                <div class="input-container">
+                    <input type="number" class="panjang" id="panjang" placeholder="masukkan panjang" style="margin: 20px 20px 5px 20px; padding: 10px 0 10px 20px; width: 80%;">
+                    <input type="number" class="lebar" id="lebar" placeholder="masukkan lebar" style="margin: 5px 20px 20px 20px; padding: 10px 0 10px 20px; width: 33%;">
+                    <input type="number" class="tinggi" id="tinggi" placeholder="masukkan tinggi" style="margin: 5px 20px 20px 20px; padding: 10px 0 10px 20px; width: 33%;">
+                </div>
+                <input type="submit" class="submit" value="Hitung">
+            </div>
+        </div>
+    </div>
+<script src="js/three.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script>
+    // Calculate volume
+    var panjang = document.getElementById('panjang');
+    var lebar = document.getElementById('lebar');
+    var tinggi = document.getElementById('tinggi');
+    var hitung = document.querySelector('.submit');
+    var result = document.querySelector('.result');
+    hitung.addEventListener('click',function(){
+        if (panjang.value <= 0 || lebar.value <= 0 || tinggi.value <= 0) {
+            result.innerHTML = "Rusuk balok harus lebih besar dari 0";
+        } else {
+            result.innerHTML = "Volume Balok : " + (panjang.value*lebar.value*tinggi.value);
+        };
+    });
+
+    document.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            if (panjang.value <= 0 || lebar.value <= 0 || tinggi.value <= 0) {
+                result.innerHTML = "Rusuk balok harus lebih besar dari 0";
+            } else {
+                result.innerHTML = "Volume Balok : " + (panjang.value*lebar.value*tinggi.value);
+            };
+        }
+    });
+
+    // THREE JS
+    var container = document.querySelector(".cube");
+        
+    var scene = new THREE.Scene( );
+    
+    var camera = new THREE.PerspectiveCamera( 75, container.offsetWidth / container.offsetHeight, 0.1, 1000 );
+
+    var renderer = new THREE.WebGLRenderer( {alpha:true} );
+
+    renderer.setSize( container.offsetWidth, container.offsetHeight );
+    container.appendChild( renderer.domElement );
+
+    // check when the browser size has changed and adjust the camera accordingly
+    window.addEventListener( 'resize', function( )
+    {
+        var WIDTH = container.offsetWidth;
+        var HEIGHT = container.offsetHeight;
+        renderer.setSize( WIDTH, HEIGHT );
+        camera.aspect = WIDTH / HEIGHT;
+        camera.updateProjectionMatrix( );
+    } );
+
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
+    // create the shape
+    var geometry = new THREE.BoxGeometry( 1, 2, 1);
+
+    // create a material, colour or image texture
+    var material = new THREE.MeshStandardMaterial();
+    material.roughness = 1;
+    material.metalness = 0;
+    material.color = new THREE.Color(0x049ef4);
+
+    // var material = new THREE.MeshLambertMaterial();
+    // material.color = new THREE.Color(0x049ef4);
+    // material.emissive = new THREE.Color(0xffffff);
+    // material.emissiveIntensity = 0.1;
+
+    var cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    camera.position.z = 3;
+
+    // var pointLight = new THREE.PointLight(0xffffff, 0.7)
+    var pointLight = new THREE.AmbientLight(0xffffff, 0.5)
+    // pointLight.position.x = 2
+    // pointLight.position.y = 3
+    // pointLight.position.z = 4
+    scene.add(pointLight)
+
+    var pointLight2 = new THREE.PointLight(0xffffff, 0.5)
+
+    // pointLight2.position.x = -2
+    // pointLight2.position.y = -3
+    // pointLight2.position.z = -4
+    scene.add(pointLight2)
+
+    // game logic
+    var update = function ( )
+    {
+        cube.rotation.x += 0.001;
+        cube.rotation.y += 0.001;
+    };
+
+    // draw scene
+    var render = function ( )
+    {
+        renderer.render( scene, camera );
+    };
+
+    // run game loop (update, render, repeat)
+    var GameLoop = function ( )
+    {
+        requestAnimationFrame( GameLoop );
+
+        update( );
+        render( );
+    };
+
+    GameLoop( );
+</script>
+</body>
+</html>
