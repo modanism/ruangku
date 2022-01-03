@@ -68,6 +68,11 @@
     });
 
     // THREE JS
+
+    // load texture
+    var textureLoader = new THREE.TextureLoader();
+    var normalTexture = textureLoader.load("img/texture/cubemap.jpg");
+
     var container = document.querySelector(".cube");
         
     var scene = new THREE.Scene( );
@@ -93,36 +98,26 @@
 
 
     // create the shape
-    var geometry = new THREE.BoxGeometry( 1, 2, 1);
+    var geometry = new THREE.BoxGeometry( 1.7, 2.5, 1.7);
 
     // create a material, colour or image texture
     var material = new THREE.MeshStandardMaterial();
     material.roughness = 1;
     material.metalness = 0;
+    material.normalMap = normalTexture;
     material.color = new THREE.Color(0x049ef4);
-
-    // var material = new THREE.MeshLambertMaterial();
-    // material.color = new THREE.Color(0x049ef4);
-    // material.emissive = new THREE.Color(0xffffff);
-    // material.emissiveIntensity = 0.1;
 
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
     camera.position.z = 3;
 
-    // var pointLight = new THREE.PointLight(0xffffff, 0.7)
-    var pointLight = new THREE.AmbientLight(0xffffff, 0.5)
-    // pointLight.position.x = 2
-    // pointLight.position.y = 3
-    // pointLight.position.z = 4
+    var pointLight = new THREE.PointLight(0xffffff, 1, 1000,2);
+    pointLight.position.set( -50, -50, -50 );
     scene.add(pointLight)
 
-    var pointLight2 = new THREE.PointLight(0xffffff, 0.5)
-
-    // pointLight2.position.x = -2
-    // pointLight2.position.y = -3
-    // pointLight2.position.z = -4
+    var pointLight2 = new THREE.PointLight(0xffffff, 1, 1000,2);
+    pointLight2.position.set( 50, 50, 50 );
     scene.add(pointLight2)
 
     // game logic
